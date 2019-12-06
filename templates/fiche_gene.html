@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Le contenu original auquel on accède via <content> -->
+<!-- <h1> The Atlas Organisms </h1> -->
+
+<h1> {{ gene[0][1] }} </h1>
+<table class= "genes">
+			{% for tup in gene %}
+			<tr>
+				<th> {{ tup[0] }} </th>
+				{% if tup[0]=='Ensembl Gene ID' %}
+					<td class="genes"><a href="{{url_for("hist", id=tup[1])}}"> {{ tup[1] }} </a> </td>
+				{% else %}
+					<td class="genes">{{ tup[1] }} </td>
+				{% endif %}
+			</tr>
+			{% endfor %}
+</table>
+<p class="tr"> <a class="tr" href="{{url_for("transcripts", id=gene[0][1])}}" > Transcripts </a> </p> 
+{% endblock %}

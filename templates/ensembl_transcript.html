@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <h1> Transcripts for {{ gene_id }} gene </h1>
+<!-- Svg content -->
+
+        <div  id="svg_div" >
+          <div class="svg_div" >
+          <svg viewBox="0 0 300 {{h}}" class="background-colored transcript_svg">
+              <!-- <rect x="10" y="{{h-10}}" width="280" height="8" style="fill:#303030"/>
+                <text x="140" y="{{h-8}}" dy="4" font-family="Verdana" font-size="6" fill="#FFFDFF">{{gene_id}}</text> -->
+          {% for e in t_coord %}
+          <rect x="{{ e[1] }}" y="{{e[3]}}" width="{{e[2]}}" height="6" style="fill:#707070"/>
+          <text x="{{e[1] -10 + e[2] / 2}}" y="{{e[3]}}" dy="4" font-family="Times New Roman" font-weight="bold" font-size="4" fill="#000000">{{ e[0] }}</text>
+          {% endfor %}
+        </svg>
+        </div>
+
+        <div class="gene_div">
+      <svg viewBox="0 0 300 15" class="transcript_svg">
+        <rect x="10" y="0" width="280" height="10" style="fill:#303030"/>
+        <text x="140" y="4" dy="4" font-family="Times New Roman" font-weight="bold" font-size="6" fill="#FFFDFF">{{gene_id}}</text>
+      </svg>
+      </div>
+      </div>
+      <!-- {% for e in t_info %}
+      <p>{{e}}<p>
+      {% endfor %}
+      <p>{{g_info[5]}}<p>
+      <p>{{g_info[6]}}<p> -->
+    <!-- <img src="{{url_for('graph', gene_id=gene_id)}}"> -->
+
+{% endblock %}
+
+<!-- <svg viewBox="0 0 100 100">
+  <rect x="10" y="15" width="5" height="15" style="fill:red"/>
+  <rect x="0" y="30" width="100" height="2" style="fill:black"/>
+  <text x="0" y="35" dx="0" dy="12">1.35</text>
+</svg> -->

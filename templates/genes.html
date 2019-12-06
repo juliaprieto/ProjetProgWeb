@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1> {{ organism.capitalize() }} genes </h1>
+<!-- <div class="table_content"> -->
+
+<div class="table_content">
+<div class="gene_header">
+<table class="genes">
+	<thead><tr> <th class="genes"> Gene ID </th> <th class="genes"> Gene Associated Name </th> </tr> </thead>
+</table>
+</div>
+
+<div class="scrollable">
+<table class="genes">
+<tbody>
+{% for tup in genes %}
+<tr>
+	        <td class="genes"><a href={{url_for("gene_info", id=tup[0]) }} > {{tup[0] }} </a></td> <td class="genes">{{tup[1]}} </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+{% endblock %}

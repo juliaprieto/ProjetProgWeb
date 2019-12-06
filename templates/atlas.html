@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Le contenu original auquel on accède via <content> -->
+    <h1> The Atlas Organisms </h1>
+
+    <div class="scrollable container">
+    <ul>
+    {% for org in atlas %}
+    <li><a class="atlas" href={{url_for("links", part=org)}}>{{ org.capitalize() }}</a> </li>
+    {% endfor %}
+    </ul>
+    </div>
+{% endblock %}
