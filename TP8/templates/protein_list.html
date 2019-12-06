@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Proteins</h1>
+<nav class="limit_offset">
+    <span>
+        {% if offset > 0 %}
+            <a href="{{url_for('protein_list', limit=limit, offset=offset-100)}}">&lt; &lt; prev. &lt; &lt;</a>
+        {% endif %}
+    </span>
+    <span>
+        <a href="{{url_for('protein_list', limit=limit, offset=offset+100)}}">&gt; &gt; next &gt; &gt;</a>
+    </span>
+</nav>
+<table>
+    <thead>
+        <tr><th>Id</th><th>HGNC symbol</th><th>Domains</th></tr>
+    </thead>
+    <tbody>
+        {% for protein in proteins %}
+            <tr>
+                <td><a href="{{url_for('protein_view', pid=protein[0])}}">{{protein[0]}}</a></td>
+                <td><a href="{{url_for('protein_view', pid=protein[0])}}">{{protein[1]}}</a></td>
+                <td>{{protein[2]}}</td>
+            </td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

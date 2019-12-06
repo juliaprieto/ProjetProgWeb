@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Protein {{protein[0]}}</h1>
+<table class=fields>
+    <tr><th>Id</th><td>{{protein[0]}}</td></tr>
+    <tr><th>Transcript ID</th><td>{{protein[1]}}</td></tr>
+    <tr><th>HGNC symbol</th><td>{{protein[2]}}</td></tr>
+    <tr><th>Domains</th><td>{{protein[3]}}</td></tr>
+</table>
+
+{% if protein[3] > 0 %}
+    <h2>Domains</h2>
+    <table>
+        <thead>
+            <tr><th>Id</th><th>Short description</th><th>Proteins</th></tr>
+        </thead>
+        <tbody>
+            {% for domain in domains %}
+                <tr>
+                    <td><a href="{{url_for('domain_view', did=domain[0])}}">{{domain[0]}}</a></td>
+                    <td><a href="{{url_for('domain_view', did=domain[0])}}">{{domain[1]}}</a></td>
+                    <td>{{domain[2]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+{% endblock %}

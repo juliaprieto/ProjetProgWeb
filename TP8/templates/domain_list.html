@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Domains</h1>
+
+<table id="domains">
+    <thead>
+        <tr><td></td><td><input id="domain_filter" placeholder="filter"></td><td></td></tr>
+        <tr><th>Id</th><th>Short description</th><th>Proteins</th></tr>
+    </thead>
+    <tbody>
+        {% for domain in domains %}
+            <tr>
+                <td><a href="{{url_for('domain_view', did=domain[0])}}">{{domain[0]}}</a></td>
+                <td><a href="{{url_for('domain_view', did=domain[0])}}">{{domain[1]}}</a></td>
+                <td>{{domain[2]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script src={{url_for("static", filename = "dynamic.js")}} defer></script>
+{% endblock %}

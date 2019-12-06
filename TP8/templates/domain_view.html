@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Domain {{domain[1]}}</h1>
+<div class=dialog></div>
+<table class=fields>
+    <tr><th>Id</th><td>{{domain[0]}}</td></tr>
+    <tr><th>Short description</th><td>{{domain[1]}}</td></tr>
+    <tr><th>Description</th><td>{{domain[2]}}</td></tr>
+    <tr><th>Proteins</th><td>{{proteins.__len__()}}</td></tr>
+    <tr><th>Related domains</th><td>{{related.__len__()}}</td></tr>
+</table>
+
+<div class=related>
+    <section>
+        <h2>Related domains</h2>
+        <table id="related">
+            <thead>
+                <tr><th>Id</th><th>Short description</th></tr>
+            </thead>
+            <tbody>
+                {% for rd in related %}
+                    <tr id="{{rd[0]}}">
+                        <td><a href="{{url_for('domain_view', did=rd[0])}}">{{rd[0]}}</a></td>
+                        <td>{{rd[1]}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Proteins</h2>
+        <table id="proteins">
+            <thead>
+                <tr><th>Id</th><th>HGNC symbol</th></tr>
+            </thead>
+            <tbody>
+                {% for protein in proteins %}
+                    <tr class="{{protein[2]}}">
+                        <td><a href="{{url_for('protein_view', pid=protein[0])}}">{{protein[0]}}</a></td>
+                        <td>{{protein[1]}}</td>
+                    </td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</div>
+<script src={{url_for("static", filename = "domain_view.js")}} defer></script>
+{% endblock %}
